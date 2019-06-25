@@ -32,4 +32,26 @@ describe("Queue", () => {
     queue.dequeue();
     expect(queue.toString()).toBe("");
   });
+
+  it("peek() should return the next item in line w/o modifyinng the queue", () => {
+    const queue = new Queue();
+
+    queue.enqueue("a");
+    queue.enqueue("b");
+    queue.enqueue("c");
+
+    expect(queue.toString()).toBe("a,b,c");
+
+    expect(queue.peek()).toBe("a");
+
+    queue.dequeue();
+    expect(queue.peek()).toBe("b");
+
+    queue.enqueue("d");
+    expect(queue.peek()).toBe("b");
+
+    queue.dequeue();
+    queue.dequeue();
+    expect(queue.peek()).toBe("d");
+  });
 });

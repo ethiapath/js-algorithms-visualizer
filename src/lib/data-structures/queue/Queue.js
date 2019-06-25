@@ -10,7 +10,12 @@ class Queue {
   /**
    * Returns the item at the front of the line/queue w/o modifying the queue
    */
-  peek() {}
+  peek() {
+    if (this.isEmpty()) return null;
+
+    const [next, ...rest] = this.queue;
+    return next;
+  }
 
   /**
    * Add item to the end of the queue
