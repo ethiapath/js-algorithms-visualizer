@@ -26,7 +26,10 @@ class Queue {
    * Remove item at the front of the queue
    * ie: next in line passes go
    */
-  dequeue() {}
+  dequeue() {
+    const [next, ...updatedQueue] = this.queue;
+    this.queue = updatedQueue;
+  }
 
   /**
    * String representation of the queue

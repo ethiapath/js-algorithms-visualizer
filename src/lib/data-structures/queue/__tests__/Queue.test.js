@@ -16,4 +16,20 @@ describe("Queue", () => {
     queue.enqueue("c");
     expect(queue.toString()).toBe("a,b,c");
   });
+
+  it("dequeue() should remove item from the front of the line", () => {
+    const queue = new Queue();
+
+    queue.enqueue("a");
+    queue.enqueue("b");
+    queue.enqueue("c");
+    expect(queue.toString()).toBe("a,b,c");
+
+    queue.dequeue();
+    expect(queue.toString()).toBe("b,c");
+    queue.dequeue();
+    expect(queue.toString()).toBe("c");
+    queue.dequeue();
+    expect(queue.toString()).toBe("");
+  });
 });
