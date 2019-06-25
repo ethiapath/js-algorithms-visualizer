@@ -25,4 +25,33 @@ describe("HashTable", () => {
     expect(hashTable.hash("abc")).toBe(6);
     expect(hashTable.hash("sasdfsd")).toBe(8);
   });
+
+  it("set(key, value) should push a key/value pair to the corresponding array given a hash", () => {
+    const hashTable = new HashTable();
+
+    hashTable.set("foo", "bar");
+
+    /**
+     * a bucket given the hash value of the key "foo" should
+     *
+     * 1. should not be null
+     * 2. should be an array ie: bucket
+     * 3. should have 1 entry {foo: "bar"}
+     */
+    const fooBucket = hashTable.buckets[hashTable.hash("foo")];
+    expect(fooBucket).not.toBeNull();
+    expect(Array.isArray(fooBucket)).toBe(true);
+    expect(fooBucket.length).toBe(1);
+
+    const entryIndex = fooBucket.findIndex(
+      ({ key: currentKey }) => currentKey === "foo"
+    );
+    expect(entryIndex).not.toBe(-1);
+
+    //test HashTable is keeping track of keys and a key's corresponding hash value
+    expect(hashTable.keys["bar"]).toBe(undefined);
+    expect(hashTable.keys["foo"]).toBe(hashTable.hash("foo"));
+    hashTable.set("hello", "world");
+    expect(hashTable.keys["hello"]).toBe(hashTable.hash("hello"));
+  });
 });

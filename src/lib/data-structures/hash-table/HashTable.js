@@ -8,7 +8,9 @@ const defaultSize = 32;
 
 class HashTable {
   constructor(size = defaultSize) {
-    this.buckets = Array(size).fill(null);
+    this.buckets = Array(size)
+      .fill()
+      .map(() => []);
 
     this.keys = {};
   }
@@ -36,7 +38,32 @@ class HashTable {
     return hash % this.buckets.length;
   }
 
-  set(key, value) {}
+  /**
+   *
+   * @param {*} key
+   * @param {*} value
+   */
+  set(key, value) {
+    const hash = this.hash(key);
+
+    //keep track of the keys and their corresponding hash value
+    this.keys[key] = hash;
+
+    const bucket = this.buckets[hash];
+
+    //check if the key exists in the bucket
+    const foundIndex = bucket.findIndex(
+      ({ key: currentKey }) => currentKey === key
+    );
+
+    //update entry in bucket
+    if (foundIndex !== -1) {
+      bucket[foundIndex] = { key, value };
+    } else {
+      //add entry to bucket
+      bucket.push({ key, value });
+    }
+  }
 
   delete(key) {}
 
