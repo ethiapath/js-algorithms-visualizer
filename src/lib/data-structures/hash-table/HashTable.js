@@ -65,7 +65,37 @@ class HashTable {
     }
   }
 
-  delete(key) {}
+  /**
+   * @param {*} key
+   */
+  delete(key) {
+    //1. get hash of key
+    const hash = this.hash(key);
+
+    //2. delete key from keys
+    const { [key]: deletedKeyHash, ...updatedKeys } = this.keys;
+    this.keys = updatedKeys;
+
+    //3. get bucket given the hash
+    const bucket = this.buckets[hash];
+    if (!bucket) return false;
+
+    //4. if entry exists in the bucket, delete the entry from the array/bucket
+    const entryIndex = bucket.findIndex(
+      ({ key: currentKey }) => currentKey === key
+    );
+    if (entryIndex === -1) {
+      return false;
+    }
+
+    //5. delete the entry from the bucket
+    const entry = bucket[entryIndex];
+    this.buckets[hash] = [
+      ...bucket.slice(0, entryIndex),
+      ...bucket.slice(entryIndex, bucket.length - 1)
+    ];
+    return entry;
+  }
 
   /**
    *

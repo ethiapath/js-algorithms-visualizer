@@ -69,4 +69,14 @@ describe("HashTable", () => {
     //previous entry "foo" => "bar" should still exists
     expect(hashTable.get("foo")).toBe("bar");
   });
+
+  it("delete(key) should return the deleted entry or false if entry does not exist in the HashTable", () => {
+    const hashTable = new HashTable();
+
+    expect(hashTable.delete("foo")).toBe(false);
+
+    hashTable.set("foo", "bar");
+    expect(hashTable.delete("foo")).toEqual({ key: "foo", value: "bar" });
+    expect(hashTable.delete("foo")).toBe(false);
+  });
 });
