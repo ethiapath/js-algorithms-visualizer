@@ -89,4 +89,19 @@ describe("HashTable", () => {
     hashTable.delete("foo");
     expect(hashTable.has("foo")).toBe(false);
   });
+
+  it("getKeys() should return an array of keys that were previously set", () => {
+    const hashTable = new HashTable();
+
+    expect(hashTable.getKeys()).toEqual([]);
+
+    hashTable.set("foo", "bar");
+    expect(hashTable.getKeys()).toEqual(["foo"]);
+    hashTable.set("hello", "world");
+    expect(hashTable.getKeys()).toEqual(["foo", "hello"]);
+
+    hashTable.set("a", "b");
+    hashTable.set("c", "d");
+    expect(hashTable.getKeys()).toEqual(["foo", "hello", "a", "c"]);
+  });
 });

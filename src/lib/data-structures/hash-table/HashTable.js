@@ -129,7 +129,12 @@ class HashTable {
     return this.keys[key] ? true : false;
   }
 
-  getKeys() {}
+  /**
+   * @return {string[]}
+   */
+  getKeys() {
+    return Object.keys(this.keys);
+  }
 }
 
 export default HashTable;
