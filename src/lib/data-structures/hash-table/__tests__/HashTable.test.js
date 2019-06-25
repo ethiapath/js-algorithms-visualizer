@@ -54,4 +54,19 @@ describe("HashTable", () => {
     hashTable.set("hello", "world");
     expect(hashTable.keys["hello"]).toBe(hashTable.hash("hello"));
   });
+
+  it("get(key) should return a previously set value given the key and null if key was never set", () => {
+    const hashTable = new HashTable();
+
+    expect(hashTable.get("foo")).toBeNull();
+
+    hashTable.set("foo", "bar");
+    expect(hashTable.get("foo")).toBe("bar");
+
+    hashTable.set("abc", "123");
+    expect(hashTable.get("abc")).toBe("123");
+
+    //previous entry "foo" => "bar" should still exists
+    expect(hashTable.get("foo")).toBe("bar");
+  });
 });

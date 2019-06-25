@@ -67,7 +67,29 @@ class HashTable {
 
   delete(key) {}
 
-  get(key) {}
+  /**
+   *
+   * @param {*} key
+   */
+  get(key) {
+    //get the bucket given the hashed key
+    const hash = this.hash(key);
+    const bucket = this.buckets[hash];
+
+    if (!bucket) return null;
+
+    /**
+     * find the entry given the key in the bucket
+     *
+     * It's possible that the bucket exists, but the entry/key may not exist in the bucket
+     */
+    const entry = bucket.find(({ key: currentKey }) => currentKey === key);
+    if (entry) {
+      return entry.value;
+    }
+
+    return entry ? entry.value : null;
+  }
 
   has(key) {}
 
