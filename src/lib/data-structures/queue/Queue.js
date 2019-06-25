@@ -18,7 +18,9 @@ class Queue {
    *
    * @param {*} value
    */
-  enqueue(value) {}
+  enqueue(value) {
+    this.queue = [...this.queue, value];
+  }
 
   /**
    * Remove item at the front of the queue
@@ -29,7 +31,9 @@ class Queue {
   /**
    * String representation of the queue
    */
-  toString() {}
+  toString() {
+    return this.queue.toString();
+  }
 }
 
 export default Queue;
