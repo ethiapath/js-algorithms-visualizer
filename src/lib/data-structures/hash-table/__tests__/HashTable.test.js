@@ -16,4 +16,13 @@ describe("HashTable", () => {
     const hashTable3 = new HashTable(3120);
     expect(hashTable3.buckets.length).toBe(3120);
   });
+
+  it("hash(key) should take a string and return a hash number", () => {
+    const hashTable = new HashTable();
+
+    expect(hashTable.hash("a")).toBe(1);
+    expect(hashTable.hash("b")).toBe(2);
+    expect(hashTable.hash("abc")).toBe(6);
+    expect(hashTable.hash("sasdfsd")).toBe(8);
+  });
 });

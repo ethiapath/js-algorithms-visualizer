@@ -13,7 +13,28 @@ class HashTable {
     this.keys = {};
   }
 
-  hash(key) {}
+  /**
+   * Some hashing algorithm to produce a unique key
+   *
+   * The uniqueness of the key is determined by the hashing algorithm
+   *
+   * @param {*} key
+   */
+  hash(key) {
+    const hash = Array.from(key).reduce((acc, letter) => {
+      /**
+       * get the sum of the chracter code values for each letter in the key
+       *
+       * string.charCodeAt()
+       * returns a number representing the UTF-16 code unit value of the character at the given index
+       *
+       * In this ex: the string = a letter, so we get the charCodeAt at index 0; index 1 would return NaN
+       */
+      return acc + letter.charCodeAt(0);
+    }, 0);
+
+    return hash % this.buckets.length;
+  }
 
   set(key, value) {}
 
