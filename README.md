@@ -17,6 +17,12 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run test:debug`
+
+Launches the test runner, but pauses execution when `debugger;` statement is found in the executed code.
+Open the following in Chrome to preview and step through the execution.<br>
+See the section about [running tests in debug mode](https://facebook.github.io/create-react-app/docs/debugging-tests) for more information.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
