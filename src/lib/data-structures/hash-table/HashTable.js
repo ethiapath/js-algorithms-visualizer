@@ -121,7 +121,13 @@ class HashTable {
     return entry ? entry.value : null;
   }
 
-  has(key) {}
+  /**
+   *
+   * @param {*} key
+   */
+  has(key) {
+    return this.keys[key] ? true : false;
+  }
 
   getKeys() {}
 }

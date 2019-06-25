@@ -79,4 +79,14 @@ describe("HashTable", () => {
     expect(hashTable.delete("foo")).toEqual({ key: "foo", value: "bar" });
     expect(hashTable.delete("foo")).toBe(false);
   });
+
+  it("has(key) should return boolean indicating if key exists", () => {
+    const hashTable = new HashTable();
+
+    expect(hashTable.has("foo")).toBe(false);
+    hashTable.set("foo", "bar");
+    expect(hashTable.has("foo")).toBe(true);
+    hashTable.delete("foo");
+    expect(hashTable.has("foo")).toBe(false);
+  });
 });
